@@ -1,0 +1,9 @@
+# OS files
+.DS_Store
+
+# Docker volumes (if they ever end up in the local dir)
+data/
+*.db
+
+# k6 results (if any local output is generated)
+*.log
