@@ -74,5 +74,9 @@ k6 run --out influxdb=http://localhost:8086/k6 test.js
 - **M1/M2 Mac Issues**: This project is optimized for Apple Silicon using the official `grafana/k6` image.
 
 ---
+Current Results
+<img width="2048" height="1280" alt="image" src="https://github.com/user-attachments/assets/8192b1a8-bb7d-482d-bb9a-e828ff1f6609" />
+
+<img width="2160" height="1278" alt="image" src="https://github.com/user-attachments/assets/aee38766-ca73-4205-a88a-19653c722e52" />
 
 _Created by [jordanprepos](https://github.com/jordanprepos)_
