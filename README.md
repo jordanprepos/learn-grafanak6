@@ -43,6 +43,8 @@ docker run --rm -i -v $(pwd):/io grafana/k6 run --out influxdb=http://host.docke
 - Open **Grafana**: [http://localhost:3000](http://localhost:3000)
 - The **InfluxDB** datasource is already pre-configured!
 - Create a new dashboard and select `InfluxDB` as the source.
+-
+<img width="2048" height="1280" alt="image" src="https://github.com/user-attachments/assets/358a54f8-bc72-4623-a829-b3883f16b4f4" />
 
 ## Troubleshooting
 
