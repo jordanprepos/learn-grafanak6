@@ -1,57 +1,78 @@
-# Learning Grafana and k6
+# 📊 Grafana + k6 Load Testing Lab
 
-This project is set up to help you learn Grafana, specifically in the context of load testing with k6.
+A streamlined environment for learning and executing load tests using **k6** and visualizing results in **Grafana** via **InfluxDB**.
 
-## What is Grafana?
+## 🚀 Quick Start
 
-Grafana is an open-source platform for monitoring and observability. It allows you to query, visualize, alert on, and understand your metrics no matter where they are stored.
+### 1. Prerequisites
 
-## What is k6?
+- **Docker Desktop**: Ensure it is installed and running.
+- **k6 (Optional)**: If you want to run tests locally without Docker, install it via Homebrew: `brew install k6`.
 
-k6 is a modern, developer-centric open-source load testing tool.
+### 2. Start the Infrastructure
 
-## Plan
-
-1. Set up Grafana and a data source (InfluxDB) using Docker.
-2. Write a basic k6 test.
-3. Visualize k6 results in Grafana.
-
-## How to Run
-
-### 1. Start the Environment
-
-Ensure Docker Desktop is running, then start the containers:
+Spin up the Grafana and InfluxDB containers:
 
 ```bash
 docker compose up -d
 ```
 
-### 2. Run the k6 Test
+### 3. Run Your First Test
 
-Run the test and send results to the InfluxDB container:
+You can run the load test script specifically designed for this lab:
+
+**Using Docker (Recommended - No installation needed):**
 
 ```bash
-# If you have k6 installed locally:
-k6 run --out influxdb=http://localhost:8086/k6 test.js
-
-# If you prefer using Docker (No installation needed):
 docker compose run k6
 ```
 
-_(This command uses the k6 service we just added to your docker-compose file!)_
+**Using Local k6 (If installed):**
 
-### 3. View Results
+```bash
+k6 run --out influxdb=http://localhost:8086/k6 test.js
+```
 
-- Open **Grafana**: [http://localhost:3000](http://localhost:3000)
-- The **InfluxDB** datasource is already pre-configured!
-- Create a new dashboard and select `InfluxDB` as the source.
--
-<img width="2048" height="1280" alt="image" src="https://github.com/user-attachments/assets/358a54f8-bc72-4623-a829-b3883f16b4f4" />
-- success a simple run of grafana 
-<img width="2160" height="1278" alt="image" src="https://github.com/user-attachments/assets/f62a5a3a-af21-4a98-8316-98e233774530" />
+### 4. Visualize the Data
 
+1. Open your browser and go to: [**http://localhost:3000**](http://localhost:3000)
+2. Login with credentials:
+   - **Username**: `admin`
+   - **Password**: `admin`
+3. Click the **Explore** icon (compass) in the sidebar.
+4. Select **InfluxDB** from the dropdown menu at the top.
+5. Start querying metrics like `http_req_duration`!
 
-## Troubleshooting
+---
 
-- **Docker API error**: Make sure Docker Desktop is open and the whale icon is steady.
-- **Port 3000/8086 busy**: Check if another service is using these ports with `lsof -i :3000`.
+## 📂 Project Structure
+
+- `docker-compose.yml`: Defines the InfluxDB, Grafana, and k6 services.
+- `test.js`: A sample k6 script that performs 10 VUs (Virtual Users) load testing against `test.k6.io`.
+- `datasource.yaml`: Automatically configures InfluxDB as a data source in Grafana upon startup.
+- `.gitignore`: Prevents OS pollution and local database files from being tracked by Git.
+
+---
+
+## 🛠 Useful Commands
+
+| Action              | Command                                 |
+| :------------------ | :-------------------------------------- |
+| **Start Services**  | `docker compose up -d`                  |
+| **Stop Services**   | `docker compose stop`                   |
+| **Stop and Remove** | `docker compose down`                   |
+| **Wipe All Data**   | `docker compose down -v`                |
+| **Check Logs**      | `docker compose logs -f [service_name]` |
+
+---
+
+## ❓ Troubleshooting
+
+- **Docker API Error**: Ensure the Docker Desktop app is open and the whale icon in your menu bar is steady.
+- **Port Conflict**: If localhost:3000 is taken, ensure no other Grafana or web services are running (`lsof -i :3000`).
+- **Data Not Showing**: Ensure you ran the k6 test _after_ the containers were up and running.
+- **M1/M2 Mac Issues**: This project is optimized for Apple Silicon using the official `grafana/k6` image.
+
+---
+
+_Created by [jordanprepos](https://github.com/jordanprepos)_
