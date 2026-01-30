@@ -34,9 +34,11 @@ Run the test and send results to the InfluxDB container:
 # If you have k6 installed locally:
 k6 run --out influxdb=http://localhost:8086/k6 test.js
 
-# If you prefer using Docker:
-docker run --rm -i -v $(pwd):/io grafana/k6 run --out influxdb=http://host.docker.internal:8086/k6 /io/test.js
+# If you prefer using Docker (No installation needed):
+docker compose run k6
 ```
+
+_(This command uses the k6 service we just added to your docker-compose file!)_
 
 ### 3. View Results
 
