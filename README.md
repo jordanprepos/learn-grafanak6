@@ -47,6 +47,9 @@ _(This command uses the k6 service we just added to your docker-compose file!)_
 - Create a new dashboard and select `InfluxDB` as the source.
 -
 <img width="2048" height="1280" alt="image" src="https://github.com/user-attachments/assets/358a54f8-bc72-4623-a829-b3883f16b4f4" />
+- success a simple run of grafana 
+<img width="2160" height="1278" alt="image" src="https://github.com/user-attachments/assets/f62a5a3a-af21-4a98-8316-98e233774530" />
+
 
 ## Troubleshooting
 
